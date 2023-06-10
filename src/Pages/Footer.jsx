@@ -3,8 +3,8 @@ import logo from "../assets/images/logo.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800  fixed bottom-0 w-full">
-      <div className="container mx-auto py-8">
+    <footer className="bg-gray-800  ">
+      <div className="py-8 px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="text-white">
             <img
