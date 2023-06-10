@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import avatarImg from "../assets/images/placeholder.jpg";
+import logo from "../assets/images/logo.png";
 const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
   // const [isAdmin] = useAdmin();
@@ -16,18 +17,26 @@ const Nav = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/" className="font-bold text-base">
+          Home
+        </Link>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <Link to="/instructors" className="font-bold text-base">
+          Instructors
+        </Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/classes" className="font-bold text-base">
+          Classes
+        </Link>
       </li>
       {
         // isAdmin ? <li><Link to="/dashboard/adminhome">Dashboard</Link></li> :
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard" className="font-bold text-base">
+            Dashboard
+          </Link>
         </li>
       }
       {/* <li>
@@ -38,32 +47,12 @@ const Nav = () => {
                 </button>
             </Link>
         </li> */}
-      {user ? (
-        <>
-          <img
-            className="rounded-full"
-            src={user && user.photoURL ? user.photoURL : avatarImg}
-            alt="profile"
-            height="30"
-            width="30"
-          />
-          <button onClick={handleLogOut} className="btn btn-ghost">
-            LogOut
-          </button>
-        </>
-      ) : (
-        <>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </>
-      )}
     </>
   );
 
   return (
     <>
-      <div className="navbar  bg-opacity-30  bg-white text-black sticky top-0 z-10" >
+      <div className="navbar  bg-opacity-30  bg-white text-black sticky top-0 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -89,6 +78,7 @@ const Nav = () => {
               {navOptions}
             </ul>
           </div>
+          <img src={logo} className="h-10" alt="" />
           <a className="btn btn-ghost normal-case text-xl">
             Camp de <br /> Sunshine
           </a>
@@ -97,7 +87,31 @@ const Nav = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+          {user ? (
+            <>
+              <img
+                className="rounded-full"
+                src={user && user.photoURL ? user.photoURL : avatarImg}
+                alt="profile"
+                height="30"
+                width="30"
+              />
+              <button
+                onClick={handleLogOut}
+                className="btn btn-ghost font-bold text-base"
+              >
+                LogOut
+              </button>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" className="font-bold text-base">
+                  Login
+                </Link>
+              </li>
+            </>
+          )}
         </div>
       </div>
     </>
