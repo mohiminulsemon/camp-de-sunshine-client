@@ -6,12 +6,17 @@ import SignUp from '../Pages/SignUp'
 import Classes from '../Pages/Classes'
 import Instructors from '../Pages/Instructors'
 import Dash from '../layouts/Dash'
+import Home from '../HomeComponents/Home'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>
+    }, 
       {
           path: '/login',
           element: <Login></Login>
