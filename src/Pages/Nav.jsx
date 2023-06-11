@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import avatarImg from "../assets/images/placeholder.jpg";
@@ -7,7 +7,10 @@ const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
   // const [isAdmin] = useAdmin();
   // const [cart] = useCart();
-
+  const [showDashboard, setShowDashboard] = useState(false);
+  const toggleDashboard = () => {
+    setShowDashboard(!showDashboard);
+  };
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -33,11 +36,11 @@ const Nav = () => {
       </li>
       {
         // isAdmin ? <li><Link to="/dashboard/adminhome">Dashboard</Link></li> :
-        <li>
-          <Link to="/dashboard" className="font-bold text-base">
-            Dashboard
-          </Link>
-        </li>
+        // <li>
+        //   <Link to="/dashboard" className="font-bold text-base">
+        //     Dashboard
+        //   </Link>
+        // </li>
       }
       {/* <li>
             <Link to="/dashboard/mycart">
@@ -90,18 +93,53 @@ const Nav = () => {
           {user ? (
             <>
               <img
-                className="rounded-full"
+                className="rounded-full mx-2"
                 src={user && user.photoURL ? user.photoURL : avatarImg}
-                alt="profile"
+                title={user.displayName}
                 height="30"
                 width="30"
               />
-              <button
-                onClick={handleLogOut}
-                className="btn btn-ghost font-bold text-base"
-              >
-                LogOut
-              </button>
+              <div>
+                {/* Dropdown Icon */}
+                <label tabIndex={0} className="btn" onClick={toggleDashboard}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                  </svg>
+                </label>
+                {showDashboard && (
+                  <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
+                    <div className="my-1">
+                    <Link className="font-semibold">
+                      My Selected Classes
+                    </Link>
+                    </div>
+
+                    <div className="my-1">
+                    <Link className="font-semibold">
+                      My Enrolled Classes
+                    </Link>
+                    </div>
+
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-ghost text-base"
+                    >
+                      LogOut
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>
