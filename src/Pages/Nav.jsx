@@ -21,36 +21,20 @@ const Nav = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/" className="font-bold text-base">
+        <Link to="/" className="font-bold text-base mx-1">
           Home
         </Link>
       </li>
       <li>
-        <Link to="/instructors" className="font-bold text-base">
+        <Link to="/instructors" className="font-bold text-base mx-1">
           Instructors
         </Link>
       </li>
       <li>
-        <Link to="/classes" className="font-bold text-base">
+        <Link to="/classes" className="font-bold text-base mx-1">
           Classes
         </Link>
       </li>
-      {
-        // isAdmin ? <li><Link to="/dashboard/adminhome">Dashboard</Link></li> :
-        // <li>
-        //   <Link to="/dashboard" className="font-bold text-base">
-        //     Dashboard
-        //   </Link>
-        // </li>
-      }
-      {/* <li>
-            <Link to="/dashboard/mycart">
-                <button className="btn gap-2">
-                    <FaShoppingCart></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
-                </button>
-            </Link>
-        </li> */}
     </>
   );
 
@@ -97,12 +81,13 @@ const Nav = () => {
                 className="rounded-full mx-2"
                 src={user && user.photoURL ? user.photoURL : avatarImg}
                 title={user.displayName}
-                height="30"
-                width="30"
+                height="40"
+                width="40"
               />
               <div>
                 {/* Dropdown Icon */}
                 <label tabIndex={0} className="btn" onClick={toggleDashboard}>
+                  Dashboard
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -125,7 +110,7 @@ const Nav = () => {
                   <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
                     {role === "" && (
                       <div>
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/classes"
                             className="font-semibold"
@@ -134,7 +119,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/enrolled"
                             className="font-semibold"
@@ -146,7 +131,7 @@ const Nav = () => {
                     )}
                     {role === "instructor" && (
                       <div>
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/addclasses"
                             className="font-semibold"
@@ -155,7 +140,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/myclasses"
                             className="font-semibold"
@@ -167,7 +152,7 @@ const Nav = () => {
                     )}
                     {role === "admin" && (
                       <div>
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/manageclasses"
                             className="font-semibold"
@@ -176,7 +161,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1">
+                        <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
                             to="/dashboard/manageusers"
                             className="font-semibold"
