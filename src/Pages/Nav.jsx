@@ -118,9 +118,12 @@ const Nav = () => {
                     />
                   </svg>
                 </label>
+
+                {/* conditonal renering for dashboard */}
+
                 {showDashboard && (
                   <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
-                    {role === " " && (
+                    {role === "" && (
                       <div>
                         <div className="my-1">
                           <Link

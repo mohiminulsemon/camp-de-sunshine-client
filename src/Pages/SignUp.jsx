@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { saveUser } from "../api/auth";
 
 const SignUp = () => {
   const {
@@ -34,28 +35,8 @@ const SignUp = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          const saveUser = { name: data.name, email: data.email };
-          // fetch('https://bistro-boss-server-fawn.vercel.app/users', {
-          //     method: 'POST',
-          //     headers: {
-          //         'content-type': 'application/json'
-          //     },
-          //     body: JSON.stringify(saveUser)
-          // })
-          //     .then(res => res.json())
-          //     .then(data => {
-          //         if (data.insertedId) {
-          //             reset();
-          //             Swal.fire({
-          //                 position: 'top-end',
-          //                 icon: 'success',
-          //                 title: 'User created successfully.',
-          //                 showConfirmButton: false,
-          //                 timer: 1500
-          //             });
-          //             navigate('/');
-          //         }
-          //     })
+          saveUser(result.user);
+          navigate(from, { replace: true });
         })
         .catch((error) => console.log(error));
     });
