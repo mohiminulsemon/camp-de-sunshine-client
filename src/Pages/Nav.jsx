@@ -4,8 +4,8 @@ import { AuthContext } from "../providers/AuthProvider";
 import avatarImg from "../assets/images/placeholder.jpg";
 import logo from "../assets/images/logo.png";
 const Nav = () => {
-  const { user, logOut,role } = useContext(AuthContext);
-  console.log(role)
+  const { user, logOut, role } = useContext(AuthContext);
+  console.log(role);
   // const [isAdmin] = useAdmin();
   // const [cart] = useCart();
   const [showDashboard, setShowDashboard] = useState(false);
@@ -120,17 +120,69 @@ const Nav = () => {
                 </label>
                 {showDashboard && (
                   <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
-                    <div className="my-1">
-                    <Link to='/dashboard/classes' className="font-semibold">
-                      My Selected Classes
-                    </Link>
-                    </div>
+                    {role === " " && (
+                      <div>
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/classes"
+                            className="font-semibold"
+                          >
+                            My Selected Classes
+                          </Link>
+                        </div>
 
-                    <div className="my-1">
-                    <Link to='/dashboard/enrolled' className="font-semibold">
-                      My Enrolled Classes
-                    </Link>
-                    </div>
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/enrolled"
+                            className="font-semibold"
+                          >
+                            My Enrolled Classes
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                    {role === "instructor" && (
+                      <div>
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/addclasses"
+                            className="font-semibold"
+                          >
+                            Add Classes
+                          </Link>
+                        </div>
+
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/myclasses"
+                            className="font-semibold"
+                          >
+                            My Classes
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                    {role === "admin" && (
+                      <div>
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/manageclasses"
+                            className="font-semibold"
+                          >
+                            Manage Classes
+                          </Link>
+                        </div>
+
+                        <div className="my-1">
+                          <Link
+                            to="/dashboard/manageusers"
+                            className="font-semibold"
+                          >
+                            Manage users
+                          </Link>
+                        </div>
+                      </div>
+                    )}
 
                     <button
                       onClick={handleLogOut}
