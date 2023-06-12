@@ -120,13 +120,13 @@ const Nav = () => {
                 {showDashboard && (
                   <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
                     <div className="my-1">
-                    <Link className="font-semibold">
+                    <Link to='/dashboard/classes' className="font-semibold">
                       My Selected Classes
                     </Link>
                     </div>
 
                     <div className="my-1">
-                    <Link className="font-semibold">
+                    <Link to='/dashboard/enrolled' className="font-semibold">
                       My Enrolled Classes
                     </Link>
                     </div>
