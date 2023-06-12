@@ -12,11 +12,13 @@ import AddClasses from '../Dashboards/instructor/AddClasses'
 import MyClasses from '../Dashboards/instructor/MyClasses'
 import ManageClasses from '../Dashboards/admin/ManageClasses'
 import ManageUsers from '../Dashboards/admin/ManageUsers'
+import Error from '../Pages/Error'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -43,6 +45,7 @@ export const router = createBrowserRouter([
   {
     path: 'dashboard',
     element: <Dash></Dash>,
+    errorElement: <Error></Error>,
     children: [
       { path: '/dashboard/classes', element: <SelectedClasses /> },
       { path: '/dashboard/enrolled', element: <EnrolledClasses /> },

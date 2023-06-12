@@ -40,6 +40,21 @@ export const becomeInstructor = (email) => {
   }).then((res) => res.json());
 };
 
+// become an admin
+export const becomeAdmin = (email) => {
+  const currentUser = {
+    role: "admin",
+  };
+
+  return fetch(`http://localhost:5000/users/${email}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(currentUser),
+  }).then((res) => res.json());
+};
+
 // Get role
 export const getRole = async (email) => {
   const response = await fetch(`http://localhost:5000/users/${email}`);
