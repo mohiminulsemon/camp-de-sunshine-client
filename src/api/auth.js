@@ -16,9 +16,9 @@ export const saveUser = user => {
   }
   
   // become a host
-  export const becomeHost = email => {
+  export const becomeInstructor = email => {
     const currentUser = {
-      role: 'host',
+      role: 'instructor',
     }
   
     return fetch(`http://localhost:5000/users/${email}`, {

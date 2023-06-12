@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
+import { getRole } from '../api/auth'
 
 export const AuthContext = createContext(null)
 
