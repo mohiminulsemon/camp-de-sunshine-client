@@ -8,6 +8,10 @@ import Dash from '../layouts/Dash'
 import Home from '../HomeComponents/Home'
 import SelectedClasses from '../Dashboards/student/SelectedClasses'
 import EnrolledClasses from '../Dashboards/student/EnrolledClasses'
+import AddClasses from '../Dashboards/instructor/AddClasses'
+import MyClasses from '../Dashboards/instructor/MyClasses'
+import ManageClasses from '../Dashboards/admin/ManageClasses'
+import ManageUsers from '../Dashboards/admin/ManageUsers'
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +46,10 @@ export const router = createBrowserRouter([
     children: [
       { path: '/dashboard/classes', element: <SelectedClasses /> },
       { path: '/dashboard/enrolled', element: <EnrolledClasses /> },
+      { path: '/dashboard/addclasses', element: <AddClasses /> },
+      { path: '/dashboard/myclasses', element: <MyClasses /> },
+      { path: '/dashboard/manageclasses', element: <ManageClasses /> },
+      { path: '/dashboard/manageusers', element: <ManageUsers /> },
     ]
 } 
 ])
