@@ -1,117 +1,143 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { addClass } from "../../api/classes";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AddClasses = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleAddClass = event => {
+  const handleAddClass = (event) => {
     // Perform class creation logic and database update here
     // Set the status field to "pending"
     event.preventDefault();
 
-    const classname = event.target.classname.value
-    const image = event.target.image.value
-    const instructorName = event.target.instructorName.value
-    const instructorEmail = event.target.instructorEmail.value
-    const availableSeats = event.target.availableSeats.value
-    const price = event.target.price.value
-    const status = 'pending'
-    // Reset form fields
-    .then(data => {
-        const classeData = {
-          classname,
-          image,
-          instructorName,
-          instructorEmail,
-          availableSeats: parseFloat(availableSeats),
-          price: parseFloat(price),
-          status,
-        
-        }
-           // post  data to server
-        //    addClass(classData)
-        //    .then(data => {
-        //      console.log(data)
-        //      setUploadButtonText('Uploaded!')
-        //      setLoading(false)
-        //      toast.success('Room Added!')
-        //      navigate('/dashboard/my-listings')
-        //    })
-        //    .catch(err => console.log(err))
-    })
+    const classname = event.target.classname.value;
+    const image = event.target.image.value;
+    const instructorName = event.target.instructorName.value;
+    const instructorEmail = event.target.instructorEmail.value;
+    const availableSeats = event.target.availableSeats.value;
+    const price = event.target.price.value;
+    const description = event.target.description.value;
+    const status = "pending";
+
+    const classData = {
+      classname,
+      image,
+      instructorName,
+      instructorEmail,
+      availableSeats: parseFloat(availableSeats),
+      price: parseFloat(price),
+      description,
+      status,
+    };
+    //  post  data to server
+    addClass(classData)
+      .then((data) => {
+        console.log(data);
+        toast.success("class Added!");
+        navigate("/dashboard/myclasses");
+      })
+      .catch((err) => console.log(err));
   };
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-2">Add a Class</h2>
-      <form onSubmit={handleAddClass} >
-        <div className="mb-2 form-control">
-          <label htmlFor="className" className="label">
-            Class Name:
-          </label>
-          <input
-            type="text"
-            id="className"
-            name="className"
-            className="input input-bordered"
-          />
+    <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+        Add a Class
+      </h2>
+      <form onSubmit={handleAddClass} className="max-w-lg mx-auto">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Class Name
+            </label>
+            <input
+              type="text"
+              name="classname"
+              placeholder="Class Name"
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Available Seats
+            </label>
+            <input
+              type="text"
+              name="availableSeats"
+              placeholder="Available Seats"
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
         </div>
-        <div className="mb-2 form-control">
-          <label htmlFor="classImage" className="label">
-            Class Image:
+        <div className="grid grid-cols-2 gap-4 mt-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Price
+            </label>
+            <input
+              type="text"
+              name="price"
+              placeholder="Price"
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Description
+            </label>
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4 mt-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Instructor Name
+            </label>
+            <input
+              type="text"
+              name="instructorName"
+              value={user?.displayName}
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Instructor's Email
+            </label>
+            <input
+              type="text"
+              name="instructorEmail"
+              value={user?.email}
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+        </div>
+        <div className="mt-6">
+          <label className="block text-sm font-medium text-gray-700">
+            Photo URL
           </label>
           <input
             type="text"
-            id="classImage"
             name="image"
-            className="input input-bordered"
+            placeholder="Photo URL"
+            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
           />
         </div>
-        <div className="mb-2 form-control">
-          <label htmlFor="instructorName" className="label">
-            Instructor Name:
-          </label>
-          <input
-            type="text"
-            id="instructorName"
-            name="instructorName"
-            value={user?.displayName}
-            readOnly
-            className="input input-bordered"
-          />
+        <div className="mt-6">
+          <button
+            type="submit"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Add Class
+          </button>
         </div>
-        <div className="mb-2 form-control">
-          <label htmlFor="instructorEmail" className="label">
-            Instructor Email:
-          </label>
-          <input
-            type="email"
-            id="instructorEmail"
-            name="instructorEmail"
-            value={user?.email}
-            readOnly
-            className="input input-bordered"
-          />
-        </div>
-        <div className="mb-2 form-control">
-          <label htmlFor="availableSeats" className="label">
-            Available Seats:
-          </label>
-          <input
-            type="number"
-            id="availableSeats"
-            name="availableSeats"
-            className="input input-bordered"
-          />
-        </div>
-        <div className="mb-2 form-control">
-          <label htmlFor="price" className="label">
-            Price:
-          </label>
-          <input type="number" id="price" name="price" className="input input-bordered" />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Add Class
-        </button>
       </form>
     </div>
   );

@@ -36,7 +36,7 @@ const MyClasses = () => {
           <tbody>
             {classes.map((classItem,index) => (
               <tr key={index} className="border-2 border-gray-200">
-                <td className="py-2 px-4">{classItem.name}</td>
+                <td className="py-2 px-4">{classItem.classname}</td>
                 <td className="py-2 px-4">{classItem.status}</td>
                 <td className="py-2 px-4">
                   {classItem.enrolledStudents}
