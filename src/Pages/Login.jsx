@@ -2,26 +2,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { saveUser } from "../api/auth";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  // const [disabled, setDisabled] = useState(true);
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+  const { handleSubmit, register, formState: { errors } } = useForm();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+  const handleLogin = async (data) => {
+    try {
+      const { email, password } = data;
+      console.log(email, password);
 
-    signIn(email, password).then((result) => {
+      const result = await signIn(email, password);
       const user = result.user;
       console.log(user);
       Swal.fire({
@@ -34,24 +33,34 @@ const Login = () => {
         },
       });
       navigate(from, { replace: true });
-    })
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
   };
 
-    const handleGoogleSignIn = () => {
-      signInWithGoogle()
-        .then((result) => {
-          console.log(result.user);
-          saveUser(result.user)
-          navigate(from, { replace: true });
-        })
-        .catch((err) => {
-          console.log(err.message);
-          toast.error(err.message);
-        });
-    };
-  
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
+      console.log(result.user);
+      saveUser(result.user);
+      Swal.fire({
+        title: "User Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Log In</h1>
@@ -59,12 +68,7 @@ const Login = () => {
             Sign in to access your account
           </p>
         </div>
-        <form
-          onSubmit={handleLogin}
-          noValidate=""
-          action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
-        >
+        <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
@@ -72,13 +76,12 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                name="email"
+                {...register("email", { required: true })}
                 id="email"
-                required
                 placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
+                className={`w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900 ${errors.email ? "border-red-500" : ""}`}
               />
+              {errors.email && <span className="text-red-500">Email is required</span>}
             </div>
             <div>
               <div className="flex justify-between">
@@ -88,12 +91,12 @@ const Login = () => {
               </div>
               <input
                 type="password"
-                name="password"
+                {...register("password", { required: true })}
                 id="password"
-                required
                 placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                className={`w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900 ${errors.password ? "border-red-500" : ""}`}
               />
+              {errors.password && <span className="text-red-500">Password is required</span>}
             </div>
           </div>
 
@@ -134,7 +137,7 @@ const Login = () => {
           >
             Sign up
           </Link>
-          .
+          
         </p>
       </div>
     </div>
