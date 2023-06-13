@@ -43,8 +43,8 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id} className="border-2 border-gray-200">
+            {users.map((user,index) => (
+              <tr key={index} className="border-2 border-gray-200">
                 <td className="py-2 px-4">{user.name}</td>
                 <td className="py-2 px-4">{user.email}</td>
                 <td className="py-2 px-4">{user.role}</td>

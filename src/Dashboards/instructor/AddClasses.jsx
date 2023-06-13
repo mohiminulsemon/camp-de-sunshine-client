@@ -29,7 +29,7 @@ const AddClasses = () => {
         
         }
            // post  data to server
-        //    addClasses(classData)
+        //    addClass(classData)
         //    .then(data => {
         //      console.log(data)
         //      setUploadButtonText('Uploaded!')

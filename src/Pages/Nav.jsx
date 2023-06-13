@@ -6,8 +6,6 @@ import logo from "../assets/images/logo.png";
 const Nav = () => {
   const { user, logOut, role } = useContext(AuthContext);
   console.log(role);
-  // const [isAdmin] = useAdmin();
-  // const [cart] = useCart();
   const [showDashboard, setShowDashboard] = useState(false);
   const toggleDashboard = () => {
     setShowDashboard(!showDashboard);

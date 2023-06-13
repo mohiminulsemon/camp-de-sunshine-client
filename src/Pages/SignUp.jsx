@@ -10,11 +10,9 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
     watch, // Add watch to get the value of confirm password field
   } = useForm();
-  const [error, setError] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
