@@ -106,7 +106,7 @@ const Nav = () => {
 
                 {showDashboard && (
                   <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
-                    {role === "student" && (
+                    { role !== "instructor" && role !== "admin" && (
                       <div>
                         <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
