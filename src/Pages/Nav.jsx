@@ -75,6 +75,7 @@ const Nav = () => {
         <div className="navbar-end">
           {user ? (
             <>
+            {/* profile image */}
               <img
                 className="rounded-full mx-2"
                 src={user && user.photoURL ? user.photoURL : avatarImg}
@@ -85,6 +86,11 @@ const Nav = () => {
               <div>
                 {/* Dropdown Icon */}
                 <label tabIndex={0} className="btn" onClick={toggleDashboard}>
+                  {role === "instructor"
+                    ? "Instructor "
+                    : role === "admin"
+                    ? "Admin "
+                    : "Student "}{" "}
                   Dashboard
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +111,8 @@ const Nav = () => {
                 {/* conditonal renering for dashboard */}
 
                 {showDashboard && (
-                  <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-4 text-center">
-                    { role !== "instructor" && role !== "admin" && (
+                  <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-2 text-center  divide-y ">
+                    {role !== "instructor" && role !== "admin" && (
                       <div>
                         <div className="my-1 hover:bg-indigo-400 p-2">
                           <Link
