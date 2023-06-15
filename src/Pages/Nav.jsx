@@ -111,10 +111,10 @@ const Nav = () => {
                 {/* conditonal renering for dashboard */}
 
                 {showDashboard && (
-                  <div className="dashboard-box bg-white shadow-lg absolute right-0 top-16 p-2 text-center  divide-y ">
+                  <div className="dashboard-box shadow-lg absolute right-2 top-16 p-2 text-center rounded-xl bg-gray-200 ">
                     {role !== "instructor" && role !== "admin" && (
                       <div>
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                           <Link
                             to="/dashboard/classes"
                             className="font-semibold"
@@ -123,7 +123,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                           <Link
                             to="/dashboard/enrolled"
                             className="font-semibold"
@@ -135,7 +135,7 @@ const Nav = () => {
                     )}
                     {role === "instructor" && (
                       <div>
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b-2 border-slate-700">
                           <Link
                             to="/dashboard/addclasses"
                             className="font-semibold"
@@ -144,7 +144,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                           <Link
                             to="/dashboard/myclasses"
                             className="font-semibold"
@@ -156,7 +156,7 @@ const Nav = () => {
                     )}
                     {role === "admin" && (
                       <div>
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                           <Link
                             to="/dashboard/manageclasses"
                             className="font-semibold"
@@ -165,7 +165,7 @@ const Nav = () => {
                           </Link>
                         </div>
 
-                        <div className="my-1 hover:bg-indigo-400 p-2">
+                        <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                           <Link
                             to="/dashboard/manageusers"
                             className="font-semibold"
@@ -178,7 +178,7 @@ const Nav = () => {
 
                     <button
                       onClick={handleLogOut}
-                      className="btn btn-ghost text-base"
+                      className="btn btn-secondary "
                     >
                       LogOut
                     </button>
