@@ -62,13 +62,13 @@ const ManageClasses = () => {
 
 //  console.log(classes)
   return (
-    <div>
+    <div className="max-w-2xl mx-auto my-10">
     
-      <h2 className="text-2xl font-bold mb-4">Manage Classes</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Manage Classes</h2>
       {classes.length === 0 ? (
         <p>No classes found.</p>
       ) : (
-        <table className="w-full bg-white border border-gray-200 rounded shadow">
+        <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-2 px-4">Class Image</th>

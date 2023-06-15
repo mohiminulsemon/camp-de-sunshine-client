@@ -1,6 +1,6 @@
 // Add a class
 export const addClass = async (classData) => {
-  const response = await fetch(`http://localhost:5000/classes`, {
+  const response = await fetch(`https://camp-server.vercel.app/classes`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -14,28 +14,28 @@ export const addClass = async (classData) => {
 
 // Get all classes
 export const getAllClasses = async () => {
-  const response = await fetch(`http://localhost:5000/classes`);
+  const response = await fetch(`https://camp-server.vercel.app/classes`);
   const data = await response.json();
   return data;
 };
 
 //get filtered classes for instructor
 export const getClasses = async (email) => {
-  const response = await fetch(`http://localhost:5000/classes/${email}`);
+  const response = await fetch(`https://camp-server.vercel.app/classes/${email}`);
   const data = await response.json();
   return data;
 };
 
 // Get single class
 export const getClass = async (id) => {
-  const response = await fetch(`http://localhost:5000/classes/${id}`);
+  const response = await fetch(`https://camp-server.vercel.app/classes/${id}`);
   const data = await response.json();
   return data;
 };
 
 // Delete a class
 export const deleteClass = async (id) => {
-  const response = await fetch(`http://localhost:5000/classes/${id}`, {
+  const response = await fetch(`https://camp-server.vercel.app/classes/${id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -51,7 +51,7 @@ export const approveClass = (classId) => {
     status: "approved",
   };
 
-  return fetch(`http://localhost:5000/classes/${classId}`, {
+  return fetch(`https://camp-server.vercel.app/classes/${classId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
@@ -66,7 +66,7 @@ export const denyClass = (classId) => {
     status: "denied",
   };
 
-  return fetch(`http://localhost:5000/classes/${classId}`, {
+  return fetch(`https://camp-server.vercel.app/classes/${classId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
@@ -81,7 +81,7 @@ export const sendFeedback = (classId, feed) => {
     feedback: feed,
   };
 
-  return fetch(`http://localhost:5000/classes/${classId}`, {
+  return fetch(`https://camp-server.vercel.app/classes/${classId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",

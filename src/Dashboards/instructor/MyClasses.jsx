@@ -4,13 +4,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user)
+   console.log(user?.email)
   const [classes, setClasses] = useState([]);
+  console.log("classes",classes);
 
   useEffect(() => {
     // Fetch instructor's classes from the API
-    getAllClasses()
-      // getClasses(user.email)
+    // getAllClasses()
+     getClasses(user?.email)
 
       .then((classes) => {
         setClasses(classes);
@@ -18,12 +19,12 @@ const MyClasses = () => {
       .catch((error) => {
         console.error("Error fetching classes:", error);
       });
-  }, []);
+  }, [user?.email]);
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto my-8">
       {classes && classes.length > 0 ? (
-        <table className="w-full bg-white border border-gray-200 rounded shadow">
+        <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-2 px-4">Class Name</th>

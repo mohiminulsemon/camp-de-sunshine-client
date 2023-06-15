@@ -5,7 +5,7 @@ import avatarImg from "../assets/images/placeholder.jpg";
 import logo from "../assets/images/logo.png";
 const Nav = () => {
   const { user, logOut, role } = useContext(AuthContext);
-  console.log(role);
+  // console.log(role);
   const [showDashboard, setShowDashboard] = useState(false);
   const toggleDashboard = () => {
     setShowDashboard(!showDashboard);
@@ -19,17 +19,17 @@ const Nav = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/" className="font-bold text-base mx-1">
+        <Link to="/" className="font-bold text-base mx-1 hover:border-b border-slate-700">
           Home
         </Link>
       </li>
       <li>
-        <Link to="/instructors" className="font-bold text-base mx-1">
+        <Link to="/instructors" className="font-bold text-base mx-1 hover:border-b border-slate-700">
           Instructors
         </Link>
       </li>
       <li>
-        <Link to="/classes" className="font-bold text-base mx-1">
+        <Link to="/classes" className="font-bold text-base mx-1 hover:border-b border-slate-700">
           Classes
         </Link>
       </li>
@@ -37,7 +37,7 @@ const Nav = () => {
   );
 
   return (
-    <>
+    
       <div className="navbar  bg-opacity-30  bg-white text-black sticky top-0 z-10">
         <div className="navbar-start">
           <div className="dropdown">
@@ -64,10 +64,12 @@ const Nav = () => {
               {navOptions}
             </ul>
           </div>
-          <img src={logo} className="h-10" alt="" />
-          <a className="btn btn-ghost normal-case text-xl">
+         <Link to="/" className="flex items-center gap-1">
+         <img src={logo} className="h-10" alt="" />
+          <a className="normal-case text-lg font-bold ">
             Camp de <br /> Sunshine
           </a>
+         </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
@@ -178,7 +180,7 @@ const Nav = () => {
 
                     <button
                       onClick={handleLogOut}
-                      className="btn btn-secondary "
+                      className="btn btn-secondary btn-sm"
                     >
                       LogOut
                     </button>
@@ -188,16 +190,16 @@ const Nav = () => {
             </>
           ) : (
             <>
-              <li>
+              <button className="btn btn-primary btn-outline">
                 <Link to="/login" className="font-bold text-base">
                   Login
                 </Link>
-              </li>
+              </button>
             </>
           )}
         </div>
       </div>
-    </>
+    
   );
 };
 

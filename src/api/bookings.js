@@ -1,7 +1,7 @@
 // Add a booking
 export const addBooking = async (bookdata, user) => {
   const bookingData = {
-    className: bookdata.className,
+    classname: bookdata.classname,
     image: bookdata.image,
     instructorName: bookdata.instructorName,
     instructorEmail: bookdata.instructorEmail,
@@ -9,7 +9,7 @@ export const addBooking = async (bookdata, user) => {
     price: bookdata.price,
     studentEmail: user.email,
   };
-  const response = await fetch(`http://localhost:5000/bookings`, {
+  const response = await fetch(`https://camp-server.vercel.app/bookings`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -21,29 +21,36 @@ export const addBooking = async (bookdata, user) => {
   return data;
 };
 
-// update class  status
-export const updateStatus = async (id, status) => {
-  const response = await fetch(`http://localhost:5000/rooms/status/${id}`, {
+
+
+// Get all bookings for a user by email
+export const getBookings = async (email) => {
+  const response = await fetch(`https://camp-server.vercel.app/bookings/${email}`);
+  const data = await response.json();
+  return data;
+};
+
+// payment status
+export const getPayment = (bookingId) => {
+  const currentStatus = {
+    status: "paid",
+  };
+
+  return fetch(`https://camp-server.vercel.app/bookings/${bookingId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ status }),
-  });
-  const data = await response.json();
-  return data;
+    body: JSON.stringify(currentStatus),
+  })
+    .then((res) => res.json())
 };
 
-// Get all bookings for a user by email
-export const getBookings = async (email) => {
-  const response = await fetch(`http://localhost:5000/bookings/${email}`);
-  const data = await response.json();
-  return data;
-};
+
 
 //get all the bookings
 export const getAllBookings = async () => {
-  const response = await fetch(`http://localhost:5000/bookins`);
+  const response = await fetch(`https://camp-server.vercel.app/bookins`);
   const data = await response.json();
   return data;
 };
@@ -51,7 +58,7 @@ export const getAllBookings = async () => {
 
 // delete a booking
 export const deleteBooking = async (id) => {
-  const response = await fetch(`http://localhost:5000/bookings/${id}`, {
+  const response = await fetch(`https://camp-server.vercel.app/bookings/${id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
