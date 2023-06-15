@@ -2,7 +2,7 @@
 ## Project title: Camp de Sunshine
 
 
-![Logo](https://i.ibb.co/TR7LvqT/Daco-2786.png)
+![Logo](https://i.ibb.co/pnLYPLV/logo.png)
 
 
 ## Features
