@@ -24,7 +24,7 @@
 
 **Database:** MongoDB
 
-## Demo
+## live site link: 
 
-Insert gif or link to demo
+https://summer-camp-d4e33.web.app/
 
