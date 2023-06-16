@@ -3,6 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import avatarImg from "../assets/images/placeholder.jpg";
 import logo from "../assets/images/logo.png";
+
+
+
 const Nav = ({ toggleTheme }) => {
   const { user, logOut, role } = useContext(AuthContext);
   // console.log(role);
@@ -133,6 +136,7 @@ const Nav = ({ toggleTheme }) => {
                     <div>
                       <div className="my-1 hover:bg-indigo-400 p-2  border-b border-slate-700">
                         <Link to="/dashboard/classes" className="font-semibold">
+                          
                           My Selected Classes
                         </Link>
                       </div>

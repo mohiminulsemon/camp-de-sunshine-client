@@ -20,7 +20,8 @@ const SelectedClasses = () => {
     getBookings(user?.email)
       // getAllBookings()
       .then((classes) => {
-        setSelectedClasses(classes);
+        const filteredClasses = classes.filter((classItem) => classItem.status !== "paid");
+        setSelectedClasses(filteredClasses);
       });
   }, [selectedClasses]);
 
