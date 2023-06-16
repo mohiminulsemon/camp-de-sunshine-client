@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { getClasses } from "../api/classes";
-import { Link } from "react-router-dom";
 import { allusers } from "../api/auth";
 
 const Instructors = () => {
