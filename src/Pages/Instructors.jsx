@@ -1,56 +1,53 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import { getClasses } from "../api/classes";
 import { Link } from "react-router-dom";
+import { allusers } from "../api/auth";
 
 const Instructors = () => {
-  const instructors = [
-    {
-      id: "648608d2406948a1eb3cd00f",
-      name: "semon",
-      email: "semoneram@gmail.com",
-      image:
-        "https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      role: "admin",
-    },
-    {
-        id: "648608d2406948a1eb3cd010",
-        name: "eram",
-        email: "eramsemon@gmail.com",
-        image:
-          "https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-        role: "instructor",
-    },
-    // Add more class objects as needed
-  ];
+  const { user, role } = useContext(AuthContext);
+  const [instructors, getinstructors] = useState([]);
+
+  useEffect(() => {
+    // Fetch all approved classes from the API
+    allusers()
+      .then((users) => {
+        // setClasses(classes);
+        const filteredUsers = users.filter(
+          (user) => user.role === "instructor"
+        );
+        getinstructors(filteredUsers);
+      })
+      .catch((error) => {
+        console.error("Error fetching classes:", error);
+      });
+  }, [instructors]);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Instructors</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {instructors.map((instructor) => (
-          <div key={instructor.id} className="bg-white p-4 rounded shadow">
+    <div className="max-w-screen mx-auto my-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        {instructors.map((classItem) => (
+          <div
+            key={classItem._id}
+            className={
+              "p-4 rounded-lg shadow-xl overflow-hidden w-80 mx-auto flex flex-col justify-between bg-gray-400"
+            }
+          >
             <img
-              src={instructor.image}
-              alt={instructor.name}
-              className="w-full h-auto mb-4 rounded"
+              src={classItem.image}
+              alt={classItem.name}
+              className="w-44 h-44 rounded-full mx-auto"
             />
-            <h2 className="text-lg font-bold">{instructor.name}</h2>
-            <p className="text-gray-600 mb-2">{instructor.email}</p>
-            {instructor.numClasses && (
-              <p className="text-gray-600 mb-2">
-                Number of Classes: {instructor.numClasses}
+            <div className="p-4">
+              <p className="mb-2">
+                <span className="font-bold">Instructor Name: </span>
+                {classItem.name}
               </p>
-            )}
-            {instructor.classes && (
-              <p className="text-gray-600 mb-2">
-                Classes: {instructor.classes.join(", ")}
+              <p className="mb-2">
+                <span className="font-bold">Email: </span>
+                {classItem.email}
               </p>
-            )}
-            <Link
-              to={`/instructors/${instructor.id}/classes`}
-              className="text-blue-600 hover:text-blue-800"
-            >
-              See Classes
-            </Link>
+            </div>
           </div>
         ))}
       </div>
