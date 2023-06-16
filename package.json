@@ -23,6 +23,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.9.0",
     "react-query": "^3.39.3",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.2",
     "react-spinners": "^0.13.8",
     "sweetalert2": "^11.7.12",

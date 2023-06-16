@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import avatarImg from "../assets/images/placeholder.jpg";
 import logo from "../assets/images/logo.png";
@@ -105,7 +105,7 @@ const Nav = ({ toggleTheme }) => {
             />
             <div>
               {/* Dropdown Icon */}
-              <label tabIndex={0} className="btn" onClick={toggleDashboard}>
+              <label tabIndex={0} className="btn w-[fit-content]" onClick={toggleDashboard}>
                 {role === "instructor"
                   ? "Instructor "
                   : role === "admin"
