@@ -32,7 +32,7 @@ export const getBookings = async (email) => {
 };
 
 // payment status
-export const getPayment = async (bookingId,classID) => {
+export const getPayment = async (bookingId) => {
 
 
  // Fetch the current class details

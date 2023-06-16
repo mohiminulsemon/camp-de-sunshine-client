@@ -13,6 +13,7 @@ import MyClasses from '../Dashboards/instructor/MyClasses'
 import ManageClasses from '../Dashboards/admin/ManageClasses'
 import ManageUsers from '../Dashboards/admin/ManageUsers'
 import Error from '../Pages/Error'
+import PaymentPage from '../Dashboards/student/Payment/PaymentPage'
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: '/dashboard/myclasses', element: <MyClasses /> },
       { path: '/dashboard/manageclasses', element: <ManageClasses /> },
       { path: '/dashboard/manageusers', element: <ManageUsers /> },
+      { path: '/dashboard/payment', element: <PaymentPage /> },
     ]
 } 
 ])
