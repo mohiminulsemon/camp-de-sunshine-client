@@ -1,6 +1,7 @@
 // Add a booking
 export const addBooking = async (bookdata, user) => {
   const bookingData = {
+    classid: bookdata._id,
     classname: bookdata.classname,
     image: bookdata.image,
     instructorName: bookdata.instructorName,
@@ -31,9 +32,35 @@ export const getBookings = async (email) => {
 };
 
 // payment status
-export const getPayment = (bookingId) => {
+export const getPayment = async (bookingId,classID) => {
+
+
+ // Fetch the current class details
+//  const response = await fetch(`https://camp-server.vercel.app/classes/${classID}`);
+//  const classData = await response.json();
+// console.log(classData);
+//  // Update the available seats value
+//  const updatedSeats =classData.availableSeats - 1;
+
+//  // Update the class with the reduced available seats
+//  const updatedClass = {
+//    ...classData,
+//    availableSeats: updatedSeats,
+//  };
+//  // Make a PATCH request to update the class
+//  const patchResponse = await fetch(`https://camp-server.vercel.app/classes/${classID}`, {
+//   method: "PATCH",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify(updatedClass),
+// })
+// .then((res) => res.json())
+
+//payment status update
   const currentStatus = {
     status: "paid",
+    
   };
 
   return fetch(`https://camp-server.vercel.app/bookings/${bookingId}`, {

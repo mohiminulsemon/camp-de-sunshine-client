@@ -57,7 +57,7 @@ const MyClasses = () => {
       ) : (
         <div className="pt-12">
           <div>
-           <h2>No classe Available !</h2>
+           <h2 className='text-center font-bold text-xl text-red-800'>No classe Available !</h2>
           </div>
         </div>
       )}

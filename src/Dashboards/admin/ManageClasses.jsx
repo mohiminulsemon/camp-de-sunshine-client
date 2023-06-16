@@ -67,7 +67,7 @@ const ManageClasses = () => {
     <div className=" my-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Manage Classes</h2>
       {classes.length === 0 ? (
-        <p>No classes found.</p>
+        <p className='text-center font-bold text-xl text-red-800'>No classes found.</p>
       ) : (
         <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>
@@ -92,33 +92,33 @@ const ManageClasses = () => {
                     className="w-20 h-20"
                   />
                 </td>
-                <td className="py-2 px-4">{classItem.classname}</td>
+                <td className="py-2 px-4 font-bold">{classItem.classname}</td>
                 <td className="py-2 px-4">{classItem.instructorName}</td>
                 <td className="py-2 px-4">{classItem.instructorEmail}</td>
                 <td className="py-2 px-4">{classItem.availableSeats}</td>
-                <td className="py-2 px-4">{classItem.price}</td>
-                <td className="py-2 px-4">{classItem.status}</td>
+                <td className="py-2 px-4">{classItem.price} $</td>
+                <td className="py-2 px-4 font-bold">{classItem.status}</td>
                 <td className="py-2 px-4 flex gap-2 justify-center">
                   {
                     <>
                       <button
                         onClick={() => handleApproveClass(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-green-500 text-white mr-2"
+                        className="px-3 py-2 rounded-md bg-green-500 text-white mr-2  disabled:bg-gray-400"
                       >
                         Approve
                       </button>
                       <button
                         onClick={() => handleDenyClass(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-red-500 text-white mr-2"
+                        className="px-3 py-2 rounded-md bg-red-500 text-white mr-2  disabled:bg-gray-400"
                       >
                         Deny
                       </button>
                       <button
                         onClick={() => handleOpenModal(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-blue-500 text-white"
+                        className="px-3 py-2 rounded-md bg-blue-500 text-white  disabled:bg-gray-400"
                       >
                         Send Feedback
                       </button>

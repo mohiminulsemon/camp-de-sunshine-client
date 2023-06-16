@@ -40,9 +40,9 @@ const SelectedClasses = () => {
       });
   };
 
-  const handlePayment = (classId) => {
+  const handlePayment = (bookingId,classId) => {
     // Remove the selected class by ID
-    getPayment(classId)
+    getPayment(bookingId,classId)
       .then(() => {
         // Remove the class from the state
         // setSelectedClasses((prevClasses) =>
@@ -62,7 +62,7 @@ const SelectedClasses = () => {
         My Selected Classes
       </h2>
       {selectedClasses.length === 0 ? (
-        <p>No selected classes found.</p>
+        <p className='text-center font-bold text-xl text-red-800'>No selected classes found.</p>
       ) : (
         <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>
@@ -92,7 +92,7 @@ const SelectedClasses = () => {
                   </button>
                   <button
                     className="px-3 py-2 rounded-md bg-blue-500 text-white"
-                    onClick={() => handlePayment(classItem._id)}
+                    onClick={() => handlePayment(classItem._id,classItem.classid)}
                     disabled={classItem?.status === "paid"}
                   >
                     {classItem?.status === "paid" ? "paid" : "pay"}

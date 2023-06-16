@@ -19,10 +19,10 @@ const EnrolledClasses = () => {
   return (
     <div className="max-w-2xl mx-auto my-8">
       <h2 className="text-2xl font-bold mb-4 text-center">
-        My Selected Classes
+        My Enrolled Classes
       </h2>
       {enrolledClasses.length === 0 ? (
-        <p>No selected classes found.</p>
+        <p className='text-center font-bold text-xl text-red-800'>No enrolled classes found.</p>
       ) : (
         <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>

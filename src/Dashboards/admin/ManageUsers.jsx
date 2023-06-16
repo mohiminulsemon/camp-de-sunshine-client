@@ -26,7 +26,7 @@ const ManageUsers = () => {
     <div className="max-w-2xl mx-auto my-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Manage Users</h2>
       {users.length === 0 ? (
-        <p>No users found.</p>
+        <p className='text-center font-bold text-xl text-red-800'>No users found.</p>
       ) : (
         <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
           <thead>
