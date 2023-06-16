@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { getAllClasses } from "../api/classes";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const PopularClasses = () => {
   const { user, role } = useContext(AuthContext);
@@ -11,7 +12,6 @@ const PopularClasses = () => {
     // Fetch all approved classes from the API
     getAllClasses()
       .then((classes) => {
-        // setClasses(classes);
         const sortedClasses = classes.sort(
           (a, b) => b.availableSeats - a.availableSeats
         );
@@ -21,16 +21,21 @@ const PopularClasses = () => {
         console.error("Error fetching classes:", error);
       });
   }, []);
+
   return (
     <div className="max-w-screen mx-auto my-10">
-      <h2 className="text-center font-bold text-2xl border-y-2 py-2 border-gray-900 my-6 w-40 mx-auto">Popular Classes</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+      <h2 className="text-center font-bold text-2xl border-y-2 py-2 border-gray-900 my-6 w-40 mx-auto">
+        Popular Classes
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.slice(0, 6).map((classItem) => (
-          <div
+          <motion.button
             key={classItem._id}
-            className={`p-2  bg-white rounded-lg shadow-xl overflow-hidden w-96 mx-auto flex flex-col justify-between ${
+            className={`p-2 bg-white rounded-lg shadow-xl overflow-hidden w-96 mx-auto flex flex-col justify-between ${
               classItem.availableSeats === 0 ? "bg-red-300" : ""
             }`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <img
               src={classItem.image}
@@ -52,7 +57,7 @@ const PopularClasses = () => {
                 {classItem.price} $
               </p>
             </div>
-          </div>
+          </motion.button>
         ))}
       </div>
       <div className="text-center my-4">

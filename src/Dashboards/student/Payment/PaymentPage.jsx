@@ -2,13 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { getBookings, getPayment } from "../../../api/bookings";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PaymentPage = () => {
   const [selectedClasses, setSelectedClasses] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   // console.log(user?.email);
+
+  const { id } = useParams();
+    console.log(id);
 
   useEffect(() => {
     // Fetch selected classes from the API for the logged-in student

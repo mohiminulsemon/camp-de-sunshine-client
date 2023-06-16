@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
       { path: "/dashboard/myclasses", element: <MyClasses /> },
       { path: "/dashboard/manageclasses", element: <ManageClasses /> },
       { path: "/dashboard/manageusers", element: <ManageUsers /> },
-      { path: "/dashboard/payment", element: <PaymentPage /> },
+      { path: "/dashboard/payment/:id", element: <PaymentPage /> },
     ],
   },
 ]);

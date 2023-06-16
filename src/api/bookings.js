@@ -80,7 +80,7 @@ export const getPayment = async (bookingId) => {
 
 //get all the bookings
 export const getAllBookings = async () => {
-  const response = await fetch(`https://camp-server.vercel.app/bookins`);
+  const response = await fetch(`https://camp-server.vercel.app/bookings`);
   const data = await response.json();
   return data;
 };

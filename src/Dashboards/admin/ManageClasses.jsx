@@ -104,21 +104,21 @@ const ManageClasses = () => {
                       <button
                         onClick={() => handleApproveClass(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-green-500 text-white mr-2  disabled:bg-gray-400"
+                        className="btn btn-primary text-white mr-2  disabled:bg-gray-400"
                       >
                         Approve
                       </button>
                       <button
                         onClick={() => handleDenyClass(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-red-500 text-white mr-2  disabled:bg-gray-400"
+                        className="btn btn-secondary text-white mr-2  disabled:bg-gray-400"
                       >
                         Deny
                       </button>
                       <button
                         onClick={() => handleOpenModal(classItem._id)}
                         disabled={classItem.status !== "pending"}
-                        className="px-3 py-2 rounded-md bg-blue-500 text-white  disabled:bg-gray-400"
+                        className="btn btn-accent text-white  disabled:bg-gray-400"
                       >
                         Send Feedback
                       </button>

@@ -15,6 +15,7 @@
     "daisyui": "^3.0.20",
     "date-fns": "^2.30.0",
     "firebase": "^9.22.0",
+    "framer-motion": "^10.12.16",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
@@ -26,6 +27,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.2",
     "react-spinners": "^0.13.8",
+    "react-transition-group": "^4.4.5",
     "sweetalert2": "^11.7.12",
     "swiper": "^9.3.2"
   },

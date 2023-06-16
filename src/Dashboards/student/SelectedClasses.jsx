@@ -78,7 +78,7 @@ const SelectedClasses = () => {
                   >
                     Delete
                   </button>
-                  <Link to={`/dashboard/payment`}>
+                  <Link to={`/dashboard/payment/${classItem._id}`}>
                     <button
                       className="px-3 py-2 rounded-md bg-blue-500 text-white"
                       disabled={classItem?.status === "paid"}

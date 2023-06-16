@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { allusers } from "../api/auth";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const PopularInstructors = () => {
   const { user, role } = useContext(AuthContext);
@@ -28,11 +29,13 @@ const PopularInstructors = () => {
    
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {instructors.slice(0, 6).map((classItem) => (
-          <div
+          <motion.button
             key={classItem._id}
             className={
               "p-4 rounded-lg shadow-xl overflow-hidden w-80 mx-auto flex flex-col justify-between bg-gray-400"
             }
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <img
               src={classItem.image}
@@ -49,7 +52,7 @@ const PopularInstructors = () => {
                 {classItem.email}
               </p>
             </div>
-          </div>
+          </motion.button>
         ))}
       </div>
       <div className="text-center my-4">

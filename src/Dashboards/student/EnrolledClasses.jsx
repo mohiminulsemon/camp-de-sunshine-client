@@ -22,36 +22,33 @@ const EnrolledClasses = () => {
         My Enrolled Classes
       </h2>
       {enrolledClasses.length === 0 ? (
-        <p className='text-center font-bold text-xl text-red-800'>No enrolled classes found.</p>
+        <p className="text-center font-bold text-xl text-red-800">
+          No enrolled classes found.
+        </p>
       ) : (
-        <table className="w-full bg-white border border-gray-200 rounded shadow text-center">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="py-2 px-4">Class image</th>
-              <th className="py-2 px-4">Class Name</th>
-              <th className="py-2 px-4">Instructor Name</th>
-              <th className="py-2 px-4">Price</th>
-              <th className="py-2 px-4">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {enrolledClasses.map((classItem) => (
-              <tr key={classItem._id} className="border-2 border-gray-200">
-                <td className="py-2 px-4">
-                  <img src={classItem.image} alt="" className="w-20 h-20" />
-                </td>
-                <td className="py-2 px-4">{classItem.classname}</td>
-                <td className="py-2 px-4">{classItem.instructorName}</td>
-                <td className="py-2 px-4">{classItem.price}</td>
-                <td className="py-2 px-4"> 
-                <div className="p-2 border-2 border-gray-700 rounded bg-rose-400">
-                {classItem.status}
+        <div className="grid grid-cols-1 gap-4">
+          {enrolledClasses.map((classItem) => (
+            <div
+              key={classItem._id}
+              className="bg-white rounded shadow p-4 flex items-center justify-evenly"
+            >
+              <img
+                src={classItem.image}
+                alt=""
+                className="w-28 h-w-28 rounded mr-4"
+              />
+              <div>
+                <h3 className="text-lg font-bold mb-1">{classItem.classname}</h3>
+                <p className="text-gray-600 mb-1">{classItem.instructorName}</p>
+                <p className="text-gray-600">{classItem.price}</p>
+               
+              </div>
+              <div className="px-3 py-2 rounded bg-rose-400 text-white mt-2">
+                  {classItem.status}
                 </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
