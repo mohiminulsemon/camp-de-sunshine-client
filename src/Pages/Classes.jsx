@@ -58,8 +58,8 @@ const Classes = () => {
           {classes.map((classItem) => (
             <div
               key={classItem._id}
-              className={`p-2  bg-white rounded-lg shadow-xl overflow-hidden w-96 mx-auto flex flex-col justify-between ${
-                classItem.availableSeats === 0 ? "bg-red-500" : ""
+              className={`p-2  rounded-lg shadow-xl overflow-hidden w-96 mx-auto flex flex-col justify-between ${
+                classItem.availableSeats === 0 ? "bg-red-400" : "bg-white"
               }`}
             >
               <img
