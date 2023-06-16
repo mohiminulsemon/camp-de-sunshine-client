@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
-import { approveClass, denyClass, getAllClasses, sendFeedback } from "../../api/classes";
+import {
+  approveClass,
+  denyClass,
+  getAllClasses,
+  sendFeedback,
+} from "../../api/classes";
 
 const ManageClasses = () => {
-    const [classes, setClasses] = useState([]);
-    const [selectedClass, setSelectedClass] = useState(null);
-    const [feedback, setFeedback] = useState("");
-    const [modalOpen, setModalOpen] = useState(false);
+  const [classes, setClasses] = useState([]);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [feedback, setFeedback] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     // Fetch all classes from the API
@@ -19,9 +24,8 @@ const ManageClasses = () => {
   }, [classes]);
 
   const handleApproveClass = (classId) => {
-      // Update class status to "approved" in the database
-      approveClass(classId);
-   
+    // Update class status to "approved" in the database
+    approveClass(classId);
   };
 
   const handleDenyClass = (classId) => {
@@ -44,7 +48,6 @@ const ManageClasses = () => {
       });
   };
 
-
   const handleOpenModal = (classId) => {
     // Set the selected class
     const selected = classes.find((classItem) => classItem._id === classId);
@@ -59,11 +62,9 @@ const ManageClasses = () => {
     setModalOpen(false);
   };
 
-
-//  console.log(classes)
+  //  console.log(classes)
   return (
-    <div className="max-w-2xl mx-auto my-10">
-    
+    <div className=" my-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Manage Classes</h2>
       {classes.length === 0 ? (
         <p>No classes found.</p>
@@ -97,8 +98,8 @@ const ManageClasses = () => {
                 <td className="py-2 px-4">{classItem.availableSeats}</td>
                 <td className="py-2 px-4">{classItem.price}</td>
                 <td className="py-2 px-4">{classItem.status}</td>
-                <td className="py-2 px-4">
-                  {(
+                <td className="py-2 px-4 flex gap-2 justify-center">
+                  {
                     <>
                       <button
                         onClick={() => handleApproveClass(classItem._id)}
@@ -122,7 +123,7 @@ const ManageClasses = () => {
                         Send Feedback
                       </button>
                     </>
-                  )}
+                  }
                 </td>
               </tr>
             ))}
@@ -130,7 +131,7 @@ const ManageClasses = () => {
         </table>
       )}
 
-{modalOpen && selectedClass && (
+      {modalOpen && selectedClass && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
           <div className="bg-white w-96 p-6 rounded-md">
             <h2 className="text-xl font-bold mb-4">Send Feedback</h2>
