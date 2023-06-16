@@ -34,7 +34,7 @@ const SignUp = () => {
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
           saveUser(result.user);
-          navigate(from, { replace: true });
+          navigate('/');
         })
         .catch((error) => console.log(error));
     });

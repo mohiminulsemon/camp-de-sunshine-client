@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // save a user to database
 export const saveUser = (user) => {
   const currentUser = {
@@ -7,15 +9,15 @@ export const saveUser = (user) => {
     // role: "student",
   };
 
-  fetch(`https://camp-server.vercel.app/users/${user?.email}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(currentUser),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+  axios
+    .put(`https://camp-server.vercel.app/users/${user?.email}`, currentUser, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.data)
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
 };
 
 // Get all users

@@ -5,7 +5,7 @@ import Footer from "../Pages/Footer";
 
 const Dash = () => {
     return (
-       <div className="container mx-auto">
+       <div data-theme="valentine" className="container mx-auto">
         <Nav></Nav>
         <Outlet></Outlet>
         <Footer></Footer>

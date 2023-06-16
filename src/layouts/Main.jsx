@@ -13,7 +13,7 @@ const Main = () => {
   return (
     <div
       className="container mx-auto"
-      data-theme={isDarkTheme ? "dark" : "light"}
+      data-theme={isDarkTheme ? "dark" : "valentine"}
     >
       <Nav toggleTheme={toggleTheme}></Nav>
       <Outlet></Outlet>
